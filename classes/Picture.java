@@ -97,6 +97,20 @@ public class Picture extends SimplePicture
       }
     }
   }
+
+/** Method to set the blue to 0 */
+  public void keepOnlyBlue()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(0);
+	pixelObj.setGreen(0);
+      }
+    }
+  }
   
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
@@ -216,6 +230,46 @@ public class Picture extends SimplePicture
       }
     }
   }
+
+ public void negate(){
+	Pixel[][] pixels = this.getPixels2D();
+	for (Pixel[] rowArray : pixels)
+	    {
+		for (Pixel pixelObj : rowArray)
+		    {
+			pixelObj.setBlue(255- pixelObj.getBlue());
+			pixelObj.setRed(255- pixelObj.getRed());
+			pixelObj.setGreen(255- pixelObj.getGreen());
+		    }
+	    }
+    }
+ public void grayscale(){
+	Pixel[][] pixels = this.getPixels2D();
+	for (Pixel[] rowArray : pixels)
+	    {
+		for (Pixel pixelObj : rowArray)
+		    {
+			int ave = pixelObj.getBlue()+  pixelObj.getRed()+ pixelObj.getGreen();
+			ave = ave/3;
+			pixelObj.setBlue(ave);
+			pixelObj.setRed(ave);
+			pixelObj.setGreen(ave);
+		    }
+	    }
+    }
+ public void fixUnderwater(){
+	Pixel[][] pixels = this.getPixels2D();
+	for (Pixel[] rowArray : pixels)
+	    {
+		for (Pixel pixelObj : rowArray)
+		    {
+			pixelObj.setBlue( pixelObj.getBlue()-50);
+			pixelObj.setRed(100+ pixelObj.getRed());
+			pixelObj.setGreen(-25+ pixelObj.getGreen());
+		    }
+	    }
+    }
+
   
   
   /* Main method for testing - each class in Java can have a main 

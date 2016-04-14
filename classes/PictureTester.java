@@ -16,6 +16,14 @@ public class PictureTester
     beach.zeroBlue();
     beach.explore();
   }
+
+ public static void testKeepOnlyBlue()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.keepOnlyBlue();
+    beach.explore();
+  }
   
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
@@ -50,6 +58,25 @@ public class PictureTester
     swan.edgeDetection(10);
     swan.explore();
   }
+
+    public static void testNegate(){
+	Picture swan = new Picture("swan.jpg");
+	swan.negate();
+	swan.explore();
+    }
+
+    public static void testGrayscale(){
+	Picture swan = new Picture("swan.jpg");
+	swan.grayscale();
+	swan.explore();
+    }
+
+ public static void testFixUnderwater(){
+	Picture swan = new Picture("water.jpg");
+	swan.fixUnderwater();
+	swan.explore();
+    }
+  
   
   /** Main method for testing.  Every class can have a main
     * method in Java */
@@ -58,21 +85,21 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue();
-    //testKeepOnlyBlue();
+      // testZeroBlue();
+      // testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
-    //testNegate();
-    //testGrayscale();
-    //testFixUnderwater();
-    //testMirrorVertical();
-    //testMirrorTemple();
-    //testMirrorArms();
+    // testNegate();
+      // testGrayscale();
+    testFixUnderwater();
+    //    testMirrorVertical();
+    // testMirrorTemple();
+       //testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
-    //testCollage();
+    //   testCollage();
     //testCopy();
-    //testEdgeDetection();
+    //   testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();
