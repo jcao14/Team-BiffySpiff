@@ -323,20 +323,66 @@ public class Picture extends SimplePicture
     }   
   }
 
+ public void copyB(Picture fromPic, 
+		   int startRow, int startCol,int endRow, int endCol)
+  {
+    Pixel fromPixel = null;
+    Pixel toPixel = null;
+    Pixel[][] toPixels = this.getPixels2D();
+    Pixel[][] fromPixels = fromPic.getPixels2D();
+    for (int fromRow = 0, toRow = startRow; 
+         fromRow < fromPixels.length &&
+         toRow < endRow; 
+         fromRow++, toRow++)
+    {
+      for (int fromCol = 0, toCol = startCol; 
+           fromCol < fromPixels[0].length &&
+           toCol < endCol;  
+           fromCol++, toCol++)
+      {
+        fromPixel = fromPixels[fromRow][fromCol];
+        toPixel = toPixels[toRow][toCol];
+        toPixel.setColor(fromPixel.getColor());
+      }
+    }   
+  }
+
+
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
     Picture flower1 = new Picture("flower1.jpg");
     Picture flower2 = new Picture("flower2.jpg");
-    this.copy(flower1,0,0);
-    this.copy(flower2,100,0);
-    this.copy(flower1,200,0);
+    this.copyB(flower1,0,0,0,0);
+    this.copyB(flower2,100,0,200,100);
+    this.copyB(flower1,200,0,300,200);
     Picture flowerNoBlue = new Picture(flower2);
     flowerNoBlue.zeroBlue();
-    this.copy(flowerNoBlue,300,0);
-    this.copy(flower1,400,0);
-    this.copy(flower2,500,0);
+    this.copyB(flowerNoBlue,300,0,400,100);
+    this.copyB(flower1,400,0,400,200);
+    this.copyB(flower2,500,0,300,0);
     this.mirrorVertical();
+    this.write("collage.jpg");
+  }
+
+
+public void myCollage()
+  {
+    Picture flower1 = new Picture("flower1.jpg");
+    Picture flower2 = new Picture("flower2.jpg");
+    Picture flower3 = new Picture("nigel.jpg");
+    this.copyB(flower1,0,0,0,0);
+    this.copyB(flower2,100,0,200,100);
+    this.copyB(flower1,200,0,300,200);
+    this.copyB(flower3,300,0,400,300);
+    Picture flowerNoBlue = new Picture(flower3);
+    flowerNoBlue.zeroBlue();
+    this.copyB(flowerNoBlue,300,0,400,100);
+    this.copyB(flower1,400,0,400,200);
+    this.copyB(flower2,500,0,300,0);
+    this.copyB(flower3,600,200,500,200);
+    this.mirrorVertical();
+ 
     this.write("collage.jpg");
   }
   
